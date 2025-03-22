@@ -5,7 +5,40 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --color-dark-50: #faf7fd;
+    --color-dark-100: #f2ecfb;
+    --color-dark-200: #e8dcf8;
+    --color-dark-300: #d6c1f1;
+    --color-dark-400: #bd98e8;
+    --color-dark-500: #a371db;
+    --color-dark-600: #8d52cb;
+    --color-dark-700: #7d42b8;
+    --color-dark-800: #663891;
+    --color-dark-900: #542e75;
+    --color-dark-950: #371754;
+    --color-light-50: #fcf9ee;
+    --color-light-100: #f6edcf;
+    --color-light-200: #eddc9a;
+    --color-light-300: #e2c05a;
+    --color-light-400: #ddb042;
+    --color-light-500: #d5932b;
+    --color-light-600: #bc7323;
+    --color-light-700: #9c5421;
+    --color-light-800: #804220;
+    --color-light-900: #6a381d;
+    --color-light-950: #3c1c0c;
+    --color-cont-50: #f6f6f6;
+    --color-cont-100: #e7e7e7;
+    --color-cont-200: #d1d1d1;
+    --color-cont-300: #b0b0b0;
+    --color-cont-400: #808080;
+    --color-cont-500: #6d6d6d;
+    --color-cont-600: #5d5d5d;
+    --color-cont-700: #4f4f4f;
+    --color-cont-800: #454545;
+    --color-cont-900: #3d3d3d;
+    --color-cont-950: #262626;
 }
