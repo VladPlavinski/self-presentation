@@ -1,12 +1,14 @@
 <div class="absolute bottom-3 fixed w-full">
     <div class="flex flex-1 justify-center items-center">
-        <div class="flex px-2 bg-cont-600 py-1 gap-8 justify-center rounded-full align-middle">
+        <div class="flex px-2 bg-cont-600 opacity-75 py-1 gap-8 justify-center rounded-full align-middle">
             @foreach($sections as $section)
-                <div class="p-1">
-                    <div class="opacity-25 bg-cont-950 h-8 text-white hover:opacity-80 hover:bg-cont-100 hover:text-black align-middle rounded-full px-2">
-                        <a class="inline-flex align-middle capitalize" href="#">{{$section['name']}}</a>
+                @if(($section['inMenu'] ?? true) !== false)
+                    <div class="p-1">
+                        <div class="opacity-80 bg-cont-950 h-8 text-white hover:opacity-100 hover:bg-cont-100 hover:text-black align-middle rounded-full px-2">
+                            <div data-to="{{$section['id']}}" class="scroller cursor-pointer inline-flex align-middle capitalize" href="#">{{$section['name']}}</div>
+                        </div>
                     </div>
-                </div>
+                @endif
             @endforeach
             <div class="p-1">
                 <label class="relative inline-flex cursor-pointer items-center">

@@ -2,6 +2,7 @@
 return [
     'welcome' => "Welcome",
     'cv' => "CV",
-    'skills' => "Skills",
+    'exp' => "Experience",
     'bio' => "Biography",
+    'contacts' => "Message me",
 ];
