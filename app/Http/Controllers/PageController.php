@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
@@ -34,7 +35,7 @@ class PageController extends Controller
                 [
                     'id' => 'cv',
                     'name' => __('sections.cv'),
-                    'parts' => ['skills', 'bio', 'info'],
+                    'parts' => ['skills', 'info'],
                     'partsData' => [
                         'skills' => [
                             'stack' => [
@@ -45,11 +46,9 @@ class PageController extends Controller
                                 'vite', 'git', 'docker',
                             ],
                         ],
-                        'bio' => [
+                        'info' => [
                             'birthdate' => $personalData['birthdate']->format('d.m.Y'),
                             'yearsOld' => $personalData['birthdate']->diff(Carbon::now())->format('%Y'),
-                        ],
-                        'info' => [
                             'phone' => $personalData['phone'],
                             'email' => $personalData['email'],
                             'socials' => $personalData['socialLinks'],
@@ -65,52 +64,38 @@ class PageController extends Controller
                             'companies' => [
                                 [
                                     'id' => 'troinaya',
-                                    'name' => 'Интернет-магазин «Тройная точка»',
-                                    'link' => 'https://www.troinaya.ru/',
                                     'year' => '2019',
-                                    'features' => 'Добавил личный кабинет с авторизацией через соц. сети, бонусную программу, рассылки, SEO-оптимизацию, встроил «Яндекс Карты» и добавил обмен с 1С.',
+                                    'link' => 'https://www.troinaya.ru/',
                                 ],
                                 [
                                     'id' => 'karachay_horse',
-                                    'name' => 'Интернет-магазин «KarachayHorse»',
+                                    'year' => '2019',
                                     'link' => 'https://karachayhorse.org/',
-                                    'year' => '2019',
-                                    'features' => 'Доработал главную страницу и личный кабинет, предоставляемые услуги и детальные страницы лошадей.',
-                                ],
-                                [
-                                    'id' => 'nero',
-                                    'name' => 'Интернет-магазин «Nero Electronics»',
-                                    'link' => 'https://www.neroelectronics.ru/',
-                                    'year' => '2019',
-                                    'features' => 'Произвёл SEO-оптимизацию: добавил микроразметки open graph и schema.org, а так же настроил корректные карты сайтов и robots.txt для поддоменов',
                                 ],
                                 [
                                     'id' => 'leader-id',
-                                    'name' => 'Площадка «Leader-Id»',
+                                    'year' => '2020-2021',
                                     'link' => 'https://leader-id.ru/',
+                                ],
+                                [
+                                    'id' => 'nero',
                                     'year' => '2020',
-                                    'features' => 'Реализовал высоконагруженную загрузку пользовательских данных с площадки в CRM посредством REST, с использованием OAuth 2.0',
+                                    'link' => 'https://www.neroelectronics.ru/',
                                 ],
                                 [
                                     'id' => 'rikc',
-                                    'name' => 'Портал «РИКЦ»',
-                                    'link' => 'https://russia-israel.com/',
                                     'year' => '2020',
-                                    'features' => 'Настроил визуализацию воронки продаж и прочих данных CRM при помощи AmCharts',
+                                    'link' => 'https://russia-israel.com/',
                                 ],
                                 [
                                     'id' => 'kokoc_group',
-                                    'name' => 'Компания «Kokoc Group»',
                                     'link' => 'https://kokocgroup.ru/',
                                     'year' => '2021',
-                                    'features' => 'Для модуля «Улей. Оценка 360» доработал визуальное отображение элементов и их настройку, а также добавил вкладку активных опросов',
                                 ],
                                 [
                                     'id' => 'korus_consulting',
-                                    'name' => 'Компания «Корус Консалтинг»',
                                     'link' => 'https://korusconsulting.ru/',
-                                    'year' => 'c 2020',
-                                    'features' => 'Для корпоративного портала реализовал модули корпоративного документооборота, NPS-опросов, Exit-интервью, Feedback-опросов, доработал модули Резюме и бронирования рабочих мест, также были переработаны существовавшие бизнес-процессы онбординга новых сотрудников, заявок на аренду ПО и согласования отпусков.',
+                                    'year' => '2020-2024',
                                 ],
                             ],
                         ],
@@ -119,7 +104,7 @@ class PageController extends Controller
                 [
                     'id' => 'bio',
                     'name' => __('sections.bio'),
-                    'parts' => ['earliest', 'middle', 'now'],
+                    'parts' => ['bio', 'interests'],
                 ],
                 [
                     'id' => 'contacts',
@@ -135,6 +120,13 @@ class PageController extends Controller
                 ],
             ],
         ];
+        foreach ($data['sections'] as $key => $section){
+            if(count($section['parts']) > 0){
+                foreach ($section['parts'] as $part){
+                    $data['sections'][$key]['partsData'][$part]['prefix'] = "{$section['id']}.{$part}";
+                }
+            }
+        }
         return view('page')->with(['data' => $data]);
     }
 

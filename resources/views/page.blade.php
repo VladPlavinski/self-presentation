@@ -10,7 +10,7 @@
     <div class="relative">
         <div class="relative h-screen snap-y snap-mandatory overflow-y-auto">
             @foreach($data['sections'] as $section)
-                <section id="{{$section['id']}}" class="snap-start shrink-0 h-screen item-center my-2 p-4">
+                <section id="{{$section['id']}}" class="snap-start shrink-0 h-screen item-center my-2 p-4 overflow-hidden">
                     <div class="shadow-xl shadow-light-700/50 inset-shadow-sm shadow-inner flex bg-light-200 dark:bg-dark-800 opacity-80 border-1 border-light-800 dark:border-dark-200 flex-row rounded-xl w-full h-full transition-all duration-500 ease-in-out">
                         @if(array_key_exists('parts', $section))
                         @foreach($section['parts'] as $part)

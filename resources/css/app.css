@@ -42,3 +42,13 @@
     --color-cont-900: #3d3d3d;
     --color-cont-950: #262626;
 }
+
+@layer utilities {
+    .scroll-none::-webkit-scrollbar {
+        display: none;
+    }
+    .scroll-none {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+}
