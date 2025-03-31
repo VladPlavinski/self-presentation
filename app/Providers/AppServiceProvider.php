@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Facades\SvgHelper;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Vite;
 
@@ -12,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind('svg', function () {
+            return new SvgHelper();
+        });
     }
 
     /**

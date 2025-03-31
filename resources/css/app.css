@@ -51,4 +51,7 @@
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
     }
+    .link{
+        @apply cursor-pointer underline hover:text-cont-50 dark:hover:text-light-200
+    }
 }

@@ -4,5 +4,5 @@ return [
     'linkedin' => 'LinkedIn',
     'whatsapp' => 'WhatsApp',
     'phone' => 'Телефон',
-    'mail' => 'E-mail',
+    'gmail' => 'Gmail',
 ];
