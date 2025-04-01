@@ -15,11 +15,12 @@
             </div>
         </div>
     </div>
-    <div class="mx-2">
-        <div id="container" class="relative h-screen snap-y snap-mandatory overflow-y-auto">
+    <div>
+        <div id="container" class="relative h-screen snap-y snap-mandatory overflow-y-auto overflow-x-hidden px-2">
+            @include('partials.abstractBackground')
             @foreach($data['sections'] as $section)
-                <section id="{{$section['id']}}" class="snap-start shrink-0 h-screen item-center my-2 p-4">
-                    <div class="flex opacity-80 flex-row rounded-xl size-full shadow-xl shadow-cont-700 dark:shadow-cont-500 bg-light-100/75 dark:bg-dark-400/75 border-2 border-light-200 dark:border-dark-600 overflow-hidden">
+                <section id="{{$section['id']}}" class="relative snap-start shrink-0 h-screen item-center my-2 p-4 z-1">
+                    <div class="flex flex-row rounded-xl size-full shadow-xl shadow-cont-700 dark:shadow-cont-500 bg-light-100/75 dark:bg-dark-400/75 border-2 border-light-200 dark:border-dark-600 overflow-hidden">
                         @foreach($section['parts'] as $part)
                             @if(count($section['parts']) > 1)
                                 @include("partials.{$section['id']}.$part", $section['partsData'][$part] ?? [])

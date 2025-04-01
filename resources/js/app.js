@@ -1,7 +1,7 @@
 import './bootstrap';
-import './chart';
 import {slider} from './slider';
 import {helper} from './pageHelper';
+import {chart} from './chart';
 
 import.meta.glob([
     '../images/**',
@@ -10,4 +10,5 @@ import.meta.glob([
 document.addEventListener('DOMContentLoaded', function(){
     helper.init();
     slider.init();
+    chart.init();
 });

@@ -1,4 +1,4 @@
-<div class="flex-1 flex-col p-8">
+<div class="opacity-80 flex-1 flex-col p-8">
     <div class="content-center h-4/7 text-center">
         <p class=" my-16 text-6xl">{{__('start.welcome')}}</p>
         <div class="flex justify-around">

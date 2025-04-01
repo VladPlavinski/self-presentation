@@ -1,11 +1,11 @@
-<div class="w-2/6 p-2 bg-light-200/75 dark:bg-dark-600/75">
+<div class="w-2/6 p-2 bg-light-200 dark:bg-dark-600">
     <p class="text-2xl text-center font-bold mb-2">{{__("$prefix.title")}}</p>
     <div class="my-4">
-        <img class="max-h-70 mx-auto rounded-full border-4 border-light-600 dark:border-dark-800" src="{{Vite::asset('resources/images/self-photo.jpg')}}" title="{{__("$prefix.name")}}">
+        <img class="max-h-70 mx-auto rounded-full opacity-100 border-4 border-light-600 dark:border-dark-800" src="{{Vite::asset('resources/images/self-photo.jpg')}}" title="{{__("$prefix.name")}}">
     </div>
     @foreach($baseInfo as $row)
         <div class="flex px-5">
-            <div class="size-10 inline fill-light-600 dark:fill-dark-200" title="{{__("$prefix.".$row['name'])}}">
+            <div class="size-10 inline fill-light-600 dark:fill-dark-200" title="{{__("$prefix.".$row['name']."Title")}}">
                 {!! app('svg')->get($row['svg'] ?? $row['name']) !!}
             </div>
             <span class="content-center ml-4">

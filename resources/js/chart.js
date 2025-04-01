@@ -2,80 +2,105 @@ import * as am5 from "@amcharts/amcharts5";
 import * as am5percent from "@amcharts/amcharts5/percent";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
-let series;
+export {chart};
 
-am5.ready(function() {
-
-    let root = am5.Root.new("chartdiv");
-    root.setThemes([
-        am5themes_Animated.new(root)
-    ]);
-    let chart = root.container.children.push(am5percent.PieChart.new(root, {
-        layout: root.verticalLayout
-    }));
-
-    series = chart.series.push(am5percent.PieSeries.new(root, {
-        alignLabels: false,
-        valueField: "value",
-        categoryField: "category"
-    }));
-    series.get("colors").set("colors", [
-        am5.color(0xbd98e8),
-        am5.color(0xddb042),
-        am5.color(0xa371db),
-        am5.color(0xd5932b),
-        am5.color(0x8d52cb),
-        am5.color(0xbc7323),
-    ]);
-    series.labels.template.setAll({
-        fontSize: 15,
-        text: "{category}",
-        fill: am5.color(0xd1d1d1),
-
-        textType: "circular",
-        radius: 3,
-    });
-
-    series.slices.template.setAll({
-        fillOpacity: 0.5,
-        strokeWidth: 3,
-        stroke: am5.color(0xd1d1d1)
-    });
-
-    series.ticks.template.set("visible", false);
-    series.slices.template.set("tooltipText", "");
-
-    series.slices.template.adapters.add("radius", function (radius, target) {
-        let dataItem = target.dataItem;
-        let high = series.getPrivate("valueHigh");
-
-        if (dataItem) {
-            let value = target.dataItem.get("valueWorking", 0);
-            return radius * value / high
+let chart = {
+    containerId: "chartdiv",
+    colors: {
+        series: [
+            am5.color(0xbd98e8),
+            am5.color(0xddb042),
+            am5.color(0xa371db),
+            am5.color(0xd5932b),
+            am5.color(0x8d52cb),
+            am5.color(0xbc7323),
+        ],
+        labels: am5.color(0xd1d1d1),
+        borders: am5.color(0xd1d1d1),
+    },
+    root: {},
+    chart: {},
+    series: {},
+    scrollTimeout: {},
+    init: function (){
+        am5.ready(()=>{this.doWhenReady()});
+        this.series.data.setAll(chartData);
+        this.setStyle();
+    },
+    doWhenReady: function(){
+        this.create();
+        this.setSeriesColors();
+        this.setHighAdapter();
+    },
+    create: function(){
+        this.root = am5.Root.new(this.containerId);
+        this.root.setThemes([
+            am5themes_Animated.new(this.root)
+        ]);
+        this.chart = this.root.container.children.push(am5percent.PieChart.new(this.root, {
+            layout: this.root.verticalLayout
+        }));
+        this.series = this.chart.series.push(am5percent.PieSeries.new(this.root, {
+            alignLabels: false,
+            valueField: "value",
+            categoryField: "category"
+        }));
+    },
+    setSeriesColors: function(){
+        this.series.get("colors").set("colors", this.colors.series);
+    },
+    setHighAdapter: function(){
+        let chart = this;
+        chart.series.slices.template.adapters.add("radius", function (radius, target) {
+            let high = chart.series.getPrivate("valueHigh");
+            if (target.dataItem) {
+                let value = target.dataItem.get("valueWorking", 0);
+                return radius * value / high
+            }
+            return radius;
+        });
+    },
+    setStyle: function(){
+        this.hideSeriesTooltips();
+        this.setSeriesLabels();
+        this.setSeriesBorders();
+        this.setScrollWatcher();
+    },
+    hideSeriesTooltips: function(){
+        this.series.ticks.template.set("visible", false);
+        this.series.slices.template.set("tooltipText", "");
+    },
+    setSeriesLabels: function (){
+        this.series.labels.template.setAll({
+            fontSize: 15,
+            text: "{category}",
+            fill: this.colors.labels,
+            textType: "circular",
+            radius: 3,
+        });
+    },
+    setSeriesBorders: function (){
+        this.series.slices.template.setAll({
+            fillOpacity: 0.5,
+            strokeWidth: 3,
+            stroke: this.colors.borders,
+        });
+    },
+    setScrollWatcher: function(){
+        document.getElementById("container").addEventListener('scroll',()=>{
+            clearTimeout(this.scrollTimeout);
+            this.scrollTimeout = setTimeout(()=>{this.showChartIfVisible()}, 100);
+        })
+    },
+    showChartIfVisible: function(){
+        if(this.isChartInViewport() && this.series.isHidden()){
+            this.series.appear(1000, 100);
+        }else if(!this.series.isHidden()){
+            this. series.hide(1000);
         }
-        return radius;
-    });
-
-    series.data.setAll(chartData);
-
-    let delayed;
-
-    document.getElementById("container").addEventListener('scroll',()=>{
-        clearTimeout(delayed);
-        delayed = setTimeout(showChartIfVisible, 100, series);
-    })
-    series.appear().then(()=>{series.hide();})
-});
-
-function inViewport(element){
-    let position = element.getBoundingClientRect();
-    return position.top > 0 && position.top < window.innerHeight
-}
-
-function showChartIfVisible(series){
-    if(inViewport(document.getElementById("chartdiv")) && series.isHidden()){
-        series.appear(1000, 100);
-    }else if(!series.isHidden()){
-        series.hide(1000);
+    },
+    isChartInViewport: function(){
+        let position = document.getElementById(this.containerId).getBoundingClientRect();
+        return position.top > 0 && position.top < window.innerHeight
     }
-};
+}

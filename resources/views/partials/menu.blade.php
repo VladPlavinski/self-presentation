@@ -1,4 +1,4 @@
-<div id='menu' class="bottom-4 fixed w-full text-lg">
+<div id='menu' class="bottom-4 fixed w-full text-lg z-2">
     <div class="flex flex-1 justify-center items-center">
         <div class="flex px-2 bg-cont-600 opacity-75 py-1 gap-4 justify-center rounded-full align-middle">
             @foreach($sections as $section)
