@@ -2,8 +2,8 @@
     <div class="content-center h-full">
         <p class="text-3xl w-1/2 mx-auto">{{__('contacts.message')}}: </p>
         <div class="my-4 text-2xl">
-            <p><span>{{__('contacts.by_phone')}}</span> <a href="tel:{{$clearPhone}}">{{$phone}}</a></p>
-            <p><span>{{__('contacts.by_mail')}}</span> <a href="mailto:{{$gmail}}">{{$gmail}}</a></p>
+            <p><span>{{__('contacts.by_phone')}}</span> <a href="tel:{{$clearPhone}}" class="button">{{$phone}}</a></p>
+            <p><span>{{__('contacts.by_mail')}}</span> <a href="mailto:{{$gmail}}" class="button">{{$gmail}}</a></p>
         </div>
         <div class="my-4">
             <p class="text-2xl">{{__('contacts.by_social')}}</p>

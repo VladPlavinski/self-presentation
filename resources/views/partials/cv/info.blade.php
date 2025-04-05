@@ -9,7 +9,7 @@
                 {!! app('svg')->get($row['svg'] ?? $row['name']) !!}
             </div>
             <span class="content-center ml-4">
-                {{__("$prefix.".$row['name'], $row['additionalToText'] ?? [])}}
+                {{$row['text'] ?? __("$prefix.".$row['name'])}}
             </span>
         </div>
     @endforeach

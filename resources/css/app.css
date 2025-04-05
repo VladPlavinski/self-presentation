@@ -51,7 +51,7 @@
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
     }
-    .link{
-        @apply cursor-pointer underline hover:text-cont-50 dark:hover:text-light-200
+    .button{
+        @apply cursor-pointer opacity-80 bg-cont-950 self-center text-white text-lg hover:opacity-100 hover:bg-cont-100 hover:text-black rounded-full px-2
     }
 }

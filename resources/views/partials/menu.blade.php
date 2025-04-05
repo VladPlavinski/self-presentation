@@ -4,7 +4,7 @@
             @foreach($sections as $section)
                 @if(($section['inMenu'] ?? true) !== false)
                     <div class="p-1">
-                        <div class="opacity-80 bg-cont-950 h-8 text-white hover:opacity-100 hover:bg-cont-100 hover:text-black rounded-full px-2">
+                        <div class="button">
                             <div data-to="{{$section['id']}}" class="scroller cursor-pointer inline-flex align-middle">{{$section['name']}}</div>
                         </div>
                     </div>

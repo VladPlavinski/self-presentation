@@ -20,8 +20,8 @@
                     <div class="px-4 mt-2">
                         <p class="text-center"><a class="link" href="{{$company['link']}}">{{__("$prefix.{$company['id']}.name")}}</a> ({{$company['year']}})</p>
                         <ul class="list-disc my-2">
-                            @foreach(__("$prefix.{$company['id']}.features") as $feature)
-                                <li class="ml-8">{{$feature}}</li>
+                            @foreach($company['features'] as $feature)
+                                <li class="ml-8">{{__("$prefix.{$company['id']}.features.$feature")}}</li>
                             @endforeach
                         </ul>
                     </div>

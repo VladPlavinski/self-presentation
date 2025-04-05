@@ -2,8 +2,12 @@
     <p class="text-2xl text-center font-bold">{{__("$prefix.title")}}</p>
     <div class="h-full px-2 content-center">
         <div class="bg-cont-200/50 rounded-xl p-4">
-            @foreach($sections as $section)
-                <p class="text-justify indent-6 my-2">{!! __("$prefix.$section")!!}</p>
+            @foreach($sections as $parts)
+                <p class="text-justify indent-6 my-2">
+                    @foreach($parts as $part)
+                        {!! __("$prefix.$part") !!}
+                    @endforeach
+                </p>
             @endforeach
         </div>
     </div>
