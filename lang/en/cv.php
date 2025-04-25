@@ -22,7 +22,7 @@ return [
         'hard-title' => "Hard-skills",
         'hard-skills' => [
             'org' => 'Known Kanban, Agile (Scrum)',
-            'principles' => 'Known ООП, SOLID, DRY, KISS',
+            'principles' => 'Known OOP, SOLID, DRY, KISS',
             'workflow' => 'Building pipeline, workflow',
             'patterns' => 'Using actual patterns',
             'code' => 'Writing clean and understandable code',

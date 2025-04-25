@@ -34,7 +34,7 @@ var slider = {
     },
     scrollToSelectedSlide(targetIndex){
         if(targetIndex >= 0 && targetIndex < this.slides.length){
-            this.slides[targetIndex].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest"});
+            this.slides[targetIndex].scrollIntoView({ behavior: "smooth", block: "nearest"});
         }
     },
 };
